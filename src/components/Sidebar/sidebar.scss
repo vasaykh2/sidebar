@@ -1,0 +1,129 @@
+// sidebar.scss
+
+// Цвета
+$sidebar-background-color: #ffffff; // почти белый фон сайдбара
+$background-color: #d5dbe5; // светло-серый фон экрана
+$button-hover-color: #f0f1f4; // серый цвет при наведении
+$button-active-color: #efebf2; // серо-розовый цвет при активации
+$text-color: #333333; // темно-серый цвет текста
+
+// Размеры
+$sidebar-width: 22vh; // ширина сайдбара
+$sidebar-height: 80vh; // высота сайдбара
+$logo-container-height: 15%; // высота блока логотипа
+$button-width: 80%; // ширина кнопок
+
+// Стили сайдбара
+.sidebar {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: $sidebar-width;
+	height: $sidebar-height;
+	background-color: $sidebar-background-color;
+	border: 1px solid #ddd;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), 0 0 0 2px white, 0 0 0 3px #ddd;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	transition: all 0.3s ease; // плавная анимация переходов
+	cursor: url('path/to/white-pointer.png'), pointer;
+	overflow: hidden;
+}
+
+// Логотип и название
+.logo-container {
+	position: relative;
+	height: $logo-container-height;
+	padding: 10px;
+	font-size: 0.6rem;
+	font-weight: bold;
+	color: rgb(8, 8, 173);
+
+	img {
+		height: 25px; // уменьшаем высоту логотипа
+		margin-right: 5px;
+	}
+
+	.colored-circles {
+		margin-bottom: 8px;
+	}
+
+	.wrapper-logo {
+		display: flex;
+	}
+
+	// Кнопка для открытия/закрытия боковой панели
+	.round-button {
+		position: absolute;
+		right: -10px;
+		width: 0.9rem;
+		height: 0.9rem;
+		border-radius: 50%;
+		background-color: $background-color;
+
+		border: none;
+		font-size: 0.5rem;
+		color: $text-color;
+		transition: color 0.3s ease;
+		box-sizing: border-box;
+		z-index: 10;
+	}
+}
+
+// Основные и дополнительные навигационные элементы
+.navigation-elements {
+	width: $button-width;
+	margin: 5% auto;
+	padding: 7px 10px;
+	background: none;
+	border: none;
+	display: flex;
+	font-size: 0.5rem;
+	align-items: center;
+	justify-content: flex-start;
+	border-radius: 10px;
+	transition: background-color 0.3s ease, color 0.3s ease, font-weight 0.3s ease;
+	color: $text-color;
+	box-sizing: border-box;
+}
+
+// Прозрачная кнопка в фокусе
+.navigation-elements:hover {
+	background-color: $button-hover-color;
+	font-weight: bold;
+}
+
+// Активная кнопка
+.navigation-elements.active {
+	background-color: $button-active-color;
+	color: rgb(8, 8, 173); // синий цвет для активной кнопки
+	font-weight: bold;
+}
+
+// Текст титула
+.navigation-elements > span {
+	margin-left: 10px;
+}
+
+// Анимация при открытии/закрытии
+.sidebar.opened {
+	width: $sidebar-width;
+	overflow: visible;
+}
+
+// Дополнительные стили для hr
+.sidebar hr {
+	border: 0.1px solid #f4f2f2;
+	width: 100%;
+}
+
+.profile-block {
+	height: 3%;
+}
+
+.wrapper {
+	max-height: 50%;
+}
