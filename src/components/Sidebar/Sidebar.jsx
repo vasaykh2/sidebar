@@ -43,7 +43,6 @@ export default class Sidebar extends React.Component {
 	// Метод для перехода по маршруту
 	goToRoute = (event, path) => {
 		console.log(`going to "${path}"`);
-		console.log(event);
 
 		// Удалим класс "active" у предыдущей активной кнопки
 		if (this.state.activeButton) {
@@ -51,8 +50,8 @@ export default class Sidebar extends React.Component {
 		}
 
 		// Добавим класс "active" к текущей кнопке и обновим состояние
-		event.target.classList.add('active');
-		this.setState({ activeButton: event.target });
+		event.currentTarget.classList.add('active');
+		this.setState({ activeButton: event.currentTarget });
 	};
 
 	// Рендер компонента
@@ -61,13 +60,14 @@ export default class Sidebar extends React.Component {
 		const { isOpened } = this.state;
 
 		// Формирование классов для контейнера с использованием библиотеки classnames
-		const containerClassnames = classnames('sidebar', { opened: isOpened });
+		const getClasses = (baseClass) =>
+			classnames(baseClass, { opened: isOpened });
 
 		return (
-			<aside className={containerClassnames}>
+			<aside className={getClasses('sidebar')}>
 				<div className="wrapper">
 					{/* Логотип и название */}
-					<div className="logo-container">
+					<div className={getClasses('logo-container')}>
 						<div className="colored-circles">
 							<svg
 								width="37.5"
@@ -80,21 +80,26 @@ export default class Sidebar extends React.Component {
 							</svg>
 						</div>
 						<div className="wrapper-logo">
-							<button className="round-button" onClick={this.toggleSidebar}>
-								<FontAwesomeIcon
-									icon={isOpened ? 'angle-left' : 'angle-right'}
-								/>
-							</button>
+							<div className="wrapper-round-button">
+								<button
+									className={getClasses('round-button')}
+									onClick={this.toggleSidebar}
+								>
+									<FontAwesomeIcon
+										icon={isOpened ? 'angle-left' : 'angle-right'}
+									/>
+								</button>
+							</div>
 							<img src={logo} alt="TensorFlow logo" />
 							<span>TensorFlow</span>
 						</div>
 					</div>
 
-					<div className="navigation-elements-container basic-navigation-elements-container">
+					<div>
 						{/* Основные навигационные элементы */}
 						{routes.map((route) => (
 							<div
-								className="navigation-elements"
+								className={getClasses('navigation-elements')}
 								key={route.title}
 								onClick={(event) => this.goToRoute(event, route.path)}
 							>
@@ -106,11 +111,11 @@ export default class Sidebar extends React.Component {
 				</div>
 
 				<div className="wrapper">
-					<div className="navigation-elements-container additional-navigation-elements-container">
+					<div>
 						{/* Дополнительные навигационные элементы внизу */}
 						{bottomRoutes.map((route) => (
 							<div
-								className="navigation-elements"
+								className={getClasses('navigation-elements')}
 								key={route.title}
 								onClick={(event) => this.goToRoute(event, route.path)}
 							>
@@ -120,8 +125,10 @@ export default class Sidebar extends React.Component {
 						))}
 					</div>
 					<hr />
-					{/* Блок профиля (пока без стилей) */}
-					<div className="profile-block">Profile Block</div>
+					{/* Блок профиля (пока без детализации) */}
+					<div>
+						<p className="profile-block">Profile Block</p>
+					</div>
 				</div>
 			</aside>
 		);

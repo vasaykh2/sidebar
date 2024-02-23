@@ -1,25 +1,29 @@
 // sidebar.scss
 
 // Цвета
-$sidebar-background-color: #ffffff; // почти белый фон сайдбара
+$sidebar-background-color: #ffffff; // фон сайдбара
 $background-color: #d5dbe5; // светло-серый фон экрана
-$button-hover-color: #f0f1f4; // серый цвет при наведении
-$button-active-color: #efebf2; // серо-розовый цвет при активации
-$text-color: #333333; // темно-серый цвет текста
+$button-hover-color: #f0f1f4; // цвет фона кнопки при наведении
+$button-active-color: #efebf2; //цвет фона кнопки при активации
+$text-color: #333333; // основной цвет текста
+$active-text-color: rgb(8, 8, 173); // цвет текста активной кнопки
 
 // Размеры
-$sidebar-width: 22vh; // ширина сайдбара
-$sidebar-height: 80vh; // высота сайдбара
-$logo-container-height: 15%; // высота блока логотипа
-$button-width: 80%; // ширина кнопок
+$sidebar-width-opened: 165px; // ширина открытого сайдбара
+$sidebar-width-closed: 50px; // ширина свернутого сайдбара
+$sidebar-height: 600px; // высота сайдбара
+$logo-container-height: 65px; // высота блока логотипа
+$button-width-opened: 80%; // ширина кнопок в сайдбаре
+$button-width-closed: 70%; // ширина кнопок в сайдбаре
 
 // Стили сайдбара
 .sidebar {
+	font-family: Arial, Helvetica, sans-serif;
 	position: fixed;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	width: $sidebar-width;
+	width: $sidebar-width-closed;
 	height: $sidebar-height;
 	background-color: $sidebar-background-color;
 	border: 1px solid #ddd;
@@ -30,21 +34,29 @@ $button-width: 80%; // ширина кнопок
 	justify-content: space-between;
 	transition: all 0.3s ease; // плавная анимация переходов
 	cursor: url('path/to/white-pointer.png'), pointer;
-	overflow: hidden;
+	box-sizing: border-box;
 }
 
-// Логотип и название
+.sidebar.opened {
+	width: $sidebar-width-opened;
+}
+
+// Стили блока лого
 .logo-container {
 	position: relative;
 	height: $logo-container-height;
-	padding: 10px;
+	padding: 6px;
 	font-size: 0.6rem;
 	font-weight: bold;
-	color: rgb(8, 8, 173);
+	color: $active-text-color;
 
 	img {
 		height: 25px; // уменьшаем высоту логотипа
-		margin-right: 5px;
+		margin-right: 0;
+	}
+
+	span {
+		display: none;
 	}
 
 	.colored-circles {
@@ -52,31 +64,87 @@ $button-width: 80%; // ширина кнопок
 	}
 
 	.wrapper-logo {
-		display: flex;
+		display: block;
+		text-align: center;
 	}
 
-	// Кнопка для открытия/закрытия боковой панели
-	.round-button {
+	// Обертка и кнопка для открытия/закрытия боковой панели
+	.wrapper-round-button {
 		position: absolute;
-		right: -10px;
+		right: -33px;
+		width: 1.7rem;
+		text-align: end;
+	}
+
+	.round-button {
+		//right: -33px;
 		width: 0.9rem;
 		height: 0.9rem;
 		border-radius: 50%;
-		background-color: $background-color;
+		background-color: $sidebar-background-color;
 
 		border: none;
 		font-size: 0.5rem;
 		color: $text-color;
 		transition: color 0.3s ease;
-		box-sizing: border-box;
-		z-index: 10;
+		z-index: 1;
 	}
 }
 
-// Основные и дополнительные навигационные элементы
+.logo-container.opened {
+	padding: 6px 10px;
+
+	img {
+		margin-right: 5px;
+	}
+
+	span {
+		display: inline;
+	}
+
+	.wrapper-logo {
+		display: flex;
+	}
+
+	.wrapper-round-button {
+		right: -13px;
+		width: 1.7rem;
+		text-align: end;
+	}
+
+	.round-button.opened {
+		background-color: $background-color;
+
+		&:hover::before {
+			content: 'SHRINK';
+			font-size: 0.45rem;
+			position: absolute;
+			left: 65%;
+			top: 50%;
+			transform: translateX(60%) translateY(-50%);
+			white-space: nowrap;
+			overflow: hidden;
+			direction: rtl;
+			width: 0;
+			opacity: 1;
+			animation: revealText 1s forwards;
+		}
+
+		@keyframes revealText {
+      50% {
+				width: 100%;
+			}
+			100% {
+				width: 100%;
+			}
+		}
+	}
+}
+
+// Стили основных и дополнительных навигационных элементов (кнопок)
 .navigation-elements {
-	width: $button-width;
-	margin: 5% auto;
+	width: $button-width-closed;
+	margin: 5px auto;
 	padding: 7px 10px;
 	background: none;
 	border: none;
@@ -88,33 +156,57 @@ $button-width: 80%; // ширина кнопок
 	transition: background-color 0.3s ease, color 0.3s ease, font-weight 0.3s ease;
 	color: $text-color;
 	box-sizing: border-box;
+	// Текст титула кнопок
+
+	span {
+		margin-left: 8px;
+		padding: 2px 6px;
+		background-color: $active-text-color;
+		color: white;
+		border-radius: 10px;
+		visibility: hidden;
+	}
+}
+
+.navigation-elements.opened {
+	width: $button-width-opened;
+	background: none;
+	border: none;
+	display: flex;
+	font-size: 0.5rem;
+	align-items: center;
+	justify-content: flex-start;
+	border-radius: 10px;
+	transition: background-color 0.3s ease, color 0.3s ease, font-weight 0.3s ease;
+	color: $text-color;
+	box-sizing: border-box;
+	// Текст титула кнопок
+	span {
+		margin-left: 10px;
+		padding: 2px 0;
+		background-color: rgba(255, 255, 255, 0);
+		color: $text-color;
+		visibility: visible;
+	}
 }
 
 // Прозрачная кнопка в фокусе
 .navigation-elements:hover {
 	background-color: $button-hover-color;
 	font-weight: bold;
+	span {
+		visibility: visible;
+	}
 }
 
 // Активная кнопка
 .navigation-elements.active {
 	background-color: $button-active-color;
-	color: rgb(8, 8, 173); // синий цвет для активной кнопки
+	color: $active-text-color;
 	font-weight: bold;
 }
 
-// Текст титула
-.navigation-elements > span {
-	margin-left: 10px;
-}
-
-// Анимация при открытии/закрытии
-.sidebar.opened {
-	width: $sidebar-width;
-	overflow: visible;
-}
-
-// Дополнительные стили для hr
+// Дополнительные стили
 .sidebar hr {
 	border: 0.1px solid #f4f2f2;
 	width: 100%;
@@ -126,4 +218,11 @@ $button-width: 80%; // ширина кнопок
 
 .wrapper {
 	max-height: 50%;
+}
+
+.profile-block {
+	height: 25px;
+	color: $text-color;
+	font-size: 0.5rem;
+	text-align: center;
 }

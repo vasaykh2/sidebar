@@ -1,5 +1,5 @@
 // Цвета
-$background-color: #d5dbe5; // светло-серый фон экрана
+$background-color: #d5dbe5;
 
 :root {
 	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -19,6 +19,6 @@ $background-color: #d5dbe5; // светло-серый фон экрана
 // Внешний контейнер
 .app-container {
 	display: flex;
-	height: 100vh; // Занимаем всю высоту экрана
+	height: 90vh;
 	background-color: $background-color; // Светло-серый фон экрана
 }
