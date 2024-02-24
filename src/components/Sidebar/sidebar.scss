@@ -32,16 +32,12 @@ $button-width-closed: 60%; // ширина кнопок в сайдбаре
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	transition: all 0.5s ease; // плавная анимация переходов
-	cursor: url('path/to/white-pointer.png'), pointer;
+	transition: all 0.5s ease;
 	box-sizing: border-box;
-	//overflow: visible;
-	//animation: slideOutSidebar 0.3s ease forwards;
 }
 
 .sidebar.opened {
 	width: $sidebar-width-opened;
-	//animation: slideInSidebar 0.3s ease forwards;
 }
 
 // Стили блока лого
@@ -54,14 +50,13 @@ $button-width-closed: 60%; // ширина кнопок в сайдбаре
 	color: $active-text-color;
 
 	img {
-		height: 25px; // уменьшаем высоту логотипа
+		height: 25px;
 		margin-right: 0;
 	}
 
 	span {
-		display: none;
-		// opacity: 0;
-		transition: display 0.3s ease;
+		opacity: 0;
+		transition: opacity 0.2s ease;
 	}
 
 	.colored-circles {
@@ -69,8 +64,10 @@ $button-width-closed: 60%; // ширина кнопок в сайдбаре
 	}
 
 	.wrapper-logo {
-		display: block;
-		text-align: center;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		padding-left: 18%;
 	}
 
 	// Обертка и кнопка для открытия/закрытия боковой панели
@@ -79,6 +76,7 @@ $button-width-closed: 60%; // ширина кнопок в сайдбаре
 		right: -33px;
 		width: 1.7rem;
 		text-align: end;
+		z-index: 1;
 	}
 
 	.round-button {
@@ -86,7 +84,7 @@ $button-width-closed: 60%; // ширина кнопок в сайдбаре
 		height: 0.9rem;
 		border-radius: 50%;
 		background-color: $sidebar-background-color;
-
+		cursor: url('path/to/white-pointer.png'), pointer;
 		border: none;
 		font-size: 0.5rem;
 		color: $text-color;
@@ -103,12 +101,12 @@ $button-width-closed: 60%; // ширина кнопок в сайдбаре
 	}
 
 	span {
-		display: inline;
-		// opacity: 1;
+		opacity: 1;
+		transition: opacity 0.5s ease;
 	}
 
 	.wrapper-logo {
-		display: flex;
+		padding-left: 0;
 	}
 
 	.wrapper-round-button {
@@ -160,75 +158,26 @@ $button-width-closed: 60%; // ширина кнопок в сайдбаре
 	transition: background-color 0.3s ease, color 0.3s ease, font-weight 0.3s ease;
 	color: $text-color;
 	box-sizing: border-box;
-	//transition: width 0.3s ease;
-	//animation: slideOut 0.3s ease forwards;
-	//display: block;
-	//text-align: center;
+	cursor: url('path/to/white-pointer.png'), pointer;
 
 	// Текст титула кнопок
 	span {
 		margin-left: 10px;
 		padding: 2px 0;
 		background-color: rgba(255, 255, 255, 0);
-		color: $text-color;	
-		//display: none;
-		//transform: translateX(50%);
+		color: $text-color;
 		opacity: 0;
 		transition: opacity 0.3s ease;
-		//animation: fadeIn 0.5s forwards;
 	}
-
-	// @keyframes fadeIn {
-	// 	0% {
-	// 		opacity: 1;
-	// 		// background-color: rgba(255, 255, 255, 0);
-	// 		// color: $text-color;
-	// 	}
-	// 	98% {
-	// 		opacity: 1;
-	// 		// background-color: $active-text-color;
-	// 		// color: white;
-	// 	}
-	// 	90% {
-	// 		opacity: 1;
-	// 		// background-color: rgba(255, 255, 255, 0);
-	// 		// color: $text-color;
-	// 	}
-	// }
 }
 
 .navigation-elements.opened {
 	width: $button-width-opened;
-	padding: 7px 10px;
-	display: flex;
-	align-items: center;
-	justify-content: flex-start;
-	//animation: slideIn 0.3s ease forwards;
 
 	span {
-		// margin-left: 10px;
-		// padding: 2px 0;
-		// background-color: rgba(255, 255, 255, 0);
-		// color: $text-color;		
 		opacity: 1;
 		transition: opacity 0.5s ease;
-		//animation: fadeOut 0.5s forwards;
 	}
-
-	/*@keyframes fadeOut {
-		1% {
-			background-color: rgba(255, 255, 255, 0);
-			color: $text-color;
-		}
-		50% {
-			background-color: $active-text-color;
-			color: white;
-		}
-		99% {
-			background-color: rgba(255, 255, 255, 0);
-			color: $text-color;
-		}
-	}*/
 }
 
 // Прозрачная кнопка в фокусе
@@ -242,7 +191,6 @@ $button-width-closed: 60%; // ширина кнопок в сайдбаре
 		color: white;
 		border-radius: 10px;
 		opacity: 1;
-		//transition: opacity 0.5s ease;
 	}
 }
 
@@ -253,9 +201,8 @@ $button-width-closed: 60%; // ширина кнопок в сайдбаре
 		margin-left: 10px;
 		padding: 2px 0;
 		background-color: rgba(255, 255, 255, 0);
-		color: $text-color;	
+		color: $text-color;
 		opacity: 1;
-		//transition: opacity 0.5s ease;
 	}
 }
 
@@ -270,10 +217,6 @@ $button-width-closed: 60%; // ширина кнопок в сайдбаре
 .sidebar hr {
 	border: 0.1px solid #f4f2f2;
 	width: 100%;
-}
-
-.profile-block {
-	height: 3%;
 }
 
 .wrapper {

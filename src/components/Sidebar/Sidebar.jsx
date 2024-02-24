@@ -1,6 +1,5 @@
 // sidebar.jsx
 
-// Импорт стилей и библиотек
 import './sidebar.scss';
 import React from 'react';
 import classnames from 'classnames';
@@ -52,12 +51,12 @@ export default class Sidebar extends React.Component {
 	goToRoute = (event, path) => {
 		console.log(`going to "${path}"`);
 
-		// Удалим класс "active" у предыдущей активной кнопки
+		// Удаление класса "active" у предыдущей активной кнопки
 		if (this.state.activeButton) {
 			this.state.activeButton.classList.remove('active');
 		}
 
-		// Добавим класс "active" к текущей кнопке и обновим состояние
+		// Добавление класса "active" к текущей кнопке и обновление состояния
 		event.currentTarget.classList.add('active');
 		this.setState({ activeButton: event.currentTarget });
 	};
@@ -72,7 +71,7 @@ export default class Sidebar extends React.Component {
 		return (
 			<aside className={getClasses('sidebar')}>
 				<div className="wrapper">
-					{/* Логотип и название */}
+					{/* Блок логотипа */}
 					<div className={getClasses('logo-container')}>
 						<div className="colored-circles">
 							<svg
@@ -102,7 +101,7 @@ export default class Sidebar extends React.Component {
 					</div>
 
 					<div>
-						{/* Основные навигационные элементы */}
+						{/* Блок основных навигационных элементов */}
 						{routes.map((route) => (
 							<div
 								className={
@@ -125,7 +124,7 @@ export default class Sidebar extends React.Component {
 
 				<div className="wrapper">
 					<div>
-						{/* Дополнительные навигационные элементы внизу */}
+						{/* Блок дополнительных навигационных элементов внизу */}
 						{bottomRoutes.map((route) => (
 							<div
 								className={
