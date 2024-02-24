@@ -28,7 +28,7 @@ export default class Sidebar extends React.Component {
 	constructor(props) {
 		super(props);
 
-		// Инициализация состояния: боковая панель открыта (isOpened: true)
+		// Инициализация состояния: сайдбар открыт (isOpened: true)
 		this.state = {
 			isOpened: true,
 			activeButton: null,
@@ -37,8 +37,16 @@ export default class Sidebar extends React.Component {
 
 	// Метод для переключения состояния открытия/закрытия боковой панели
 	toggleSidebar = () => {
-		this.setState((state) => ({ isOpened: !state.isOpened }));
+		this.setState({
+			isOpened: !this.state.isOpened,
+		});
 	};
+
+	componentDidMount() {
+		if (this.state.activeButton) {
+			this.state.activeButton.classList.add('active');
+		}
+	}
 
 	// Метод для перехода по маршруту
 	goToRoute = (event, path) => {
@@ -54,12 +62,10 @@ export default class Sidebar extends React.Component {
 		this.setState({ activeButton: event.currentTarget });
 	};
 
-	// Рендер компонента
 	render() {
-		// Деструктуризация состояния
 		const { isOpened } = this.state;
 
-		// Формирование классов для контейнера с использованием библиотеки classnames
+		// Формирование классов для контейнера
 		const getClasses = (baseClass) =>
 			classnames(baseClass, { opened: isOpened });
 
@@ -99,7 +105,14 @@ export default class Sidebar extends React.Component {
 						{/* Основные навигационные элементы */}
 						{routes.map((route) => (
 							<div
-								className={getClasses('navigation-elements')}
+								className={
+									this.state.activeButton &&
+									this.state.activeButton.classList[0] ===
+										'navigation-elements' &&
+									this.state.activeButton.textContent === route.title
+										? getClasses('navigation-elements active')
+										: getClasses('navigation-elements')
+								}
 								key={route.title}
 								onClick={(event) => this.goToRoute(event, route.path)}
 							>
@@ -115,7 +128,14 @@ export default class Sidebar extends React.Component {
 						{/* Дополнительные навигационные элементы внизу */}
 						{bottomRoutes.map((route) => (
 							<div
-								className={getClasses('navigation-elements')}
+								className={
+									this.state.activeButton &&
+									this.state.activeButton.classList[0] ===
+										'navigation-elements' &&
+									this.state.activeButton.textContent === route.title
+										? getClasses('navigation-elements active')
+										: getClasses('navigation-elements')
+								}
 								key={route.title}
 								onClick={(event) => this.goToRoute(event, route.path)}
 							>
