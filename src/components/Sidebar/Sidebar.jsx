@@ -41,12 +41,6 @@ export default class Sidebar extends React.Component {
 		});
 	};
 
-	componentDidMount() {
-		if (this.state.activeButton) {
-			this.state.activeButton.classList.add('active');
-		}
-	}
-
 	// Метод для перехода по маршруту
 	goToRoute = (event, path) => {
 		console.log(`going to "${path}"`);
@@ -64,7 +58,7 @@ export default class Sidebar extends React.Component {
 	render() {
 		const { isOpened } = this.state;
 
-		// Формирование классов для контейнера
+		// Формирование классов с добавлением 'opened'
 		const getClasses = (baseClass) =>
 			classnames(baseClass, { opened: isOpened });
 
