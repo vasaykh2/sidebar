@@ -1,5 +1,4 @@
-// Цвета
-$background-color: #d5dbe5;
+@import 'components/Sidebar/colors.scss';
 
 :root {
 	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -18,7 +17,6 @@ $background-color: #d5dbe5;
 
 // Внешний контейнер
 .app-container {
-	display: flex;
 	height: 90vh;
-	background-color: $background-color; // Светло-серый фон экрана
+	background-color: $background-color; // Фон экрана
 }

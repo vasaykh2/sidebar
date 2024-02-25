@@ -1,20 +1,7 @@
 // sidebar.scss
 
-// Цвета
-$sidebar-background-color: #ffffff; // фон сайдбара
-$background-color: #d5dbe5; // светло-серый фон экрана
-$button-hover-color: #f0f1f4; // цвет фона кнопки при наведении
-$button-active-color: #efebf2; //цвет фона кнопки при активации
-$text-color: #333333; // основной цвет текста
-$active-text-color: rgb(8, 8, 173); // цвет текста активной кнопки
-
-// Размеры
-$sidebar-width-opened: 165px; // ширина открытого сайдбара
-$sidebar-width-closed: 50px; // ширина свернутого сайдбара
-$sidebar-height: 600px; // высота сайдбара
-$logo-container-height: 65px; // высота блока логотипа
-$button-width-opened: 80%; // ширина кнопок в сайдбаре
-$button-width-closed: 60%; // ширина кнопок в сайдбаре
+@import 'colors';
+@import 'sizes';
 
 // Стили сайдбара
 .sidebar {
@@ -26,8 +13,9 @@ $button-width-closed: 60%; // ширина кнопок в сайдбаре
 	width: $sidebar-width-closed;
 	height: $sidebar-height;
 	background-color: $sidebar-background-color;
-	border: 1px solid #ddd;
-	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), 0 0 0 2px white, 0 0 0 3px #ddd;
+	border: 1px solid $box-border;
+	box-shadow: 0 0 5px $box-shadow-outer, 0 0 0 2px $box-shadow-inner,
+		0 0 0 3px $box-border;
 	border-radius: 10px;
 	display: flex;
 	flex-direction: column;
@@ -150,8 +138,8 @@ $button-width-closed: 60%; // ширина кнопок в сайдбаре
 	padding: 7px 10px;
 	background: none;
 	border: none;
-	display: flex;
 	font-size: 0.5rem;
+	display: flex;
 	align-items: center;
 	justify-content: flex-start;
 	border-radius: 10px;
@@ -164,7 +152,6 @@ $button-width-closed: 60%; // ширина кнопок в сайдбаре
 	span {
 		margin-left: 10px;
 		padding: 2px 0;
-		background-color: rgba(255, 255, 255, 0);
 		color: $text-color;
 		opacity: 0;
 		transition: opacity 0.3s ease;
@@ -188,19 +175,19 @@ $button-width-closed: 60%; // ширина кнопок в сайдбаре
 		margin-left: 8px;
 		padding: 2px 6px;
 		background-color: $active-text-color;
-		color: white;
+		color: $text-color-closed;
 		border-radius: 10px;
 		opacity: 1;
 	}
 }
 
-.navigation-elements.opened:hover {
+.navigation-elements:hover.opened {
 	background-color: $button-hover-color;
 	font-weight: bold;
 	span {
 		margin-left: 10px;
 		padding: 2px 0;
-		background-color: rgba(255, 255, 255, 0);
+		background-color: $button-color;
 		color: $text-color;
 		opacity: 1;
 	}
@@ -215,7 +202,7 @@ $button-width-closed: 60%; // ширина кнопок в сайдбаре
 
 // Дополнительные стили
 .sidebar hr {
-	border: 0.1px solid #f4f2f2;
+	border: 0.1px solid $hr-border;
 	width: 100%;
 }
 
