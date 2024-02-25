@@ -1,5 +1,3 @@
-// sidebar.jsx
-
 import './sidebar.scss';
 import React from 'react';
 import classnames from 'classnames';

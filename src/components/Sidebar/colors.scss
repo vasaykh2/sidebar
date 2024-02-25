@@ -1,5 +1,3 @@
-// colors.scss
-
 // Цвета фона
 $background-color: #d5dbe5; // светло-серый фон экрана
 $sidebar-background-color: #ffffff; // фон сайдбара
@@ -13,7 +11,7 @@ $active-text-color: rgb(8, 8, 173); // цвет текста активной к
 $text-color-closed: white; //цвет всплывающего текста в свернутом сайдбаре
 
 // Цвета тени и рамки
-$box-shadow-outer: rgba(0, 0, 0, 0.2); // первая тень (внешняя)
+$box-shadow-outer: rgba(0, 0, 0, 0.2); // Внешняя тень
 $box-shadow-inner: white; // первая внутренняя тень с белым цветом
 $box-border: #ddd; // вторая внутренняя тень с  цветом рамки
 $hr-border: #f4f2f2; // цвет разделительной линии
